@@ -1,6 +1,9 @@
 name: CI Pipeline  
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
 
@@ -9,5 +12,48 @@ jobs:
     steps:
       - name: Cechck Out Azhar 
         uses: actions/checkout@v6.0.2
+
+      - name: setup .net 
+        uses: actions/setup-dotnet@v5
+        with:
+         dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build
+
+      - name: Publish
+        run: dotnet publish  --output ./nupkg
+
+      - name: Collect/Upload artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: nuget-package
+          path: ./nupkg
+  deploy:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Download-artifact
+        uses: actions/download-artifact@v3.1.0
+        with:
+          name: nuget-package
+          path: ./nupkg
+      
+      - name: Azure Login
+        uses: Azure/login@v3
+
+      - name: Deploy to Azure Web Apps
+        uses: Azure/webapps-deploy@v2.2.19
+        with: 
+          app-name: myecommwebapp26
+          package: ./nupkg
+      
+    
+      
+       
     
 
