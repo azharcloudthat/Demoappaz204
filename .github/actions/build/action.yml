@@ -1,0 +1,25 @@
+name: Dotnet build Composite action
+description: Restore, build and test
+
+inputs:
+  configuration:
+    description: 'Build configuration'
+    required: false
+    default: 'Release'
+
+
+runs:
+  using: composite
+  steps:
+
+    - name: Restore
+      run: dotnet restore
+      shell: bash
+
+    - name: Build
+      run: dotnet build --configuration ${{ inputs.configuration }}
+      shell: bash
+
+    - name: Package
+      run: dotnet pack --configuration ${{ inputs.configuration }} --output ./nupkg
+      shell: bash
