@@ -3,14 +3,14 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Cechck Out Azhar 
+      - name: Check Out Repository
         uses: actions/checkout@v6.0.2
 
       - name: setup .net 
