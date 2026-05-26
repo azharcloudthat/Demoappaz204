@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
 
@@ -45,6 +45,8 @@ jobs:
       
       - name: Azure Login
         uses: Azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CRED }}
 
       - name: Deploy to Azure Web Apps
         uses: Azure/webapps-deploy@v2.2.19
