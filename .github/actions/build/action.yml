@@ -9,17 +9,5 @@ inputs:
 
 
 runs:
-  using: composite
-  steps:
-
-    - name: Restore
-      run: dotnet restore
-      shell: bash
-
-    - name: Build
-      run: dotnet build --configuration ${{ inputs.configuration }}
-      shell: bash
-
-    - name: Package
-      run: dotnet pack --configuration ${{ inputs.configuration }} --output ./nupkg
-      shell: bash
+  using: "node20"
+  main: "index.js"

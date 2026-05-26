@@ -1,0 +1,7 @@
+{
+    "name": "Build and Publish NuGet Package",
+    "description": "A GitHub Action to build and publish a NuGet package to GitHub Packages.",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+}

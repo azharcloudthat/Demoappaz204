@@ -23,6 +23,10 @@ jobs:
         with:
           configuration: 'Release'
 
+      - name: Run CCustom action(Javscript)
+        uses: ./.github/actions/build
+
+
       - name: Publish
         run: dotnet publish  --output ./nupkg
 
