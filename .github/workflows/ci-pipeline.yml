@@ -26,13 +26,13 @@ jobs:
           run: dotnet build
 
         - name: Publish - Creates a Nuget Package
-          run: dotnet publish --output ./publish
+          run: dotnet publish --output ./nupkg
 
         - name: Collect/Upload
           uses: actions/upload-artifact@v7.0.2
           with:
             name: publish
-            path: ./publish
+            path: ./nupkg
     
     deploy:
         runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
           uses: actions/download-artifact@v8.0.2
           with:
             name: publish
-            path: ./publish
+            path: ./nupkg
         
         - name: Azure Login
           uses: Azure/login@v3.0.2
@@ -52,4 +52,4 @@ jobs:
           uses: azure/webapps-deploy@v2
           with:
             app-name: tcsactions
-            package: ./publish
+            package: ./nupkg
