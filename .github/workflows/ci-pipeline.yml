@@ -1,0 +1,26 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+
+        - name: Checkout Code
+          uses: actions/checkout@v7
+
+        - name: setup SDK
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.x'
+
+        - name: Restore
+          run: dotnet restore
+
+        - name: Build
+          run: dotnet build
