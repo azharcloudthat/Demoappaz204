@@ -10,7 +10,7 @@ A modern, responsive e-commerce web application built with ASP.NET Core 8.0 and 
 
 - **Modern E-Commerce Interface**: Responsive design with product showcases, promotional banners, and shopping cart functionality
 - **Azure Cloud Deployment**: Fully automated deployment to Azure using Bicep templates
-- **CI/CD Ready**: Configured for continuous integration and deployment
+- **CI/CD Ready**: Configured for continuous integration and deployment on GitHub and Azure
 - **Application Insights**: Built-in monitoring and telemetry
 - **Security**: HTTPS enforcement and HSTS headers
 - **Responsive Design**: Mobile-first approach with Bootstrap 5
