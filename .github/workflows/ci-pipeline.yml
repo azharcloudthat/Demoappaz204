@@ -24,3 +24,32 @@ jobs:
 
         - name: Build
           run: dotnet build
+
+        - name: Publish - Creates a Nuget Package
+          run: dotnet publish --output ./publish
+
+        - name: Collect/Upload
+          uses: actions/upload-artifact@v7.0.2
+          with:
+            name: publish
+            path: ./publish
+    
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Download Artifact
+          uses: actions/download-artifact@v3
+          with:
+            name: publish
+            path: ./publish
+        
+        - name: Azure Login
+          uses: Azure/login@v3.0.2
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        - name: Deploy to Azure
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: tcsactions
+            package: ./publish
