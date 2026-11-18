@@ -15,7 +15,7 @@ runs:
       shell: bash
 
     - name: Build - Composite Action Step
-      run: dotnet build --configura tion ${{ inputs.configuration }}
+      run: dotnet build --configuration ${{ inputs.configuration }}
       shell: bash
 
     - name: Test - Composite Action Step
