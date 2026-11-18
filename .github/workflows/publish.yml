@@ -1,0 +1,39 @@
+name: Publish .NET package to Github Packages
+
+on:
+  push:
+    branches:
+      - master
+    
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+
+
+        steps:
+        - name: Checkout Code
+          uses: actions/checkout@v7
+
+        - name: setup SDK
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.x'
+
+        - name: Restore
+          run: dotnet restore
+
+        - name: Build
+          run: dotnet build
+
+        - name: Pack
+          run: dotnet pack --output ./nupkg
+
+        - name: Upload Nuget Package
+          uses: actions/upload-artifact@v7.0.2
+          with:
+            name: nupkg
+            path: ./nupkg
+        
+        - name: Publish to GitHub Packages
+          run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/azharcloudthat/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+          
