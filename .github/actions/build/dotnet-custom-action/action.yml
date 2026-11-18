@@ -1,0 +1,12 @@
+name: Dotnet build Custom Action
+description: Restore, build and test a .NET project
+
+inputs:
+  configuration:
+    description: 'Build configuration'
+    required: false
+    default: 'Release'
+
+runs:
+  using: "node20"
+  main: "index.js"

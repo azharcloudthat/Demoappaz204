@@ -1,0 +1,7 @@
+{
+    "name": "dotnet-custom-action",
+    "version": "1.0.0",
+    "description": "Custom GitHub Actions for .NET build, test and restore",
+    "main": "index.js",
+    "license": "MIT"
+}
