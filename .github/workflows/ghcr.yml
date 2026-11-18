@@ -26,4 +26,4 @@ jobs:
             context: .
             file: Demoappaz204/Dockerfile
             push: true
-            tags: ghcr.io/${{ github.repository_owner }}/Demoappaz204:2.0.0
+            tags: ghcr.io/${{ github.repository_owner }}/demoappaz204:2.0.0
