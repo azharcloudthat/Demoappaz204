@@ -24,11 +24,10 @@ jobs:
           with:
             dotnet-version: '6.x'
 
-        - name: Restore
-          run: dotnet restore
-
-        - name: Build
-          run: dotnet build
+        - name: Build with Custom Action
+          uses: ./.github/actions/build
+          with:
+            configuration: 'Release'
 
         - name: Publish - Creates a Nuget Package
           run: dotnet publish --output ./nupkg

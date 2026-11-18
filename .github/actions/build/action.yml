@@ -1,5 +1,5 @@
 name: Dotnet build Composite action
-description: Restore, build and test
+description: Restore, build and test a .NET project
 
 inputs:
   configuration:
@@ -7,7 +7,18 @@ inputs:
     required: false
     default: 'Release'
 
-
 runs:
-  using: "node20"
-  main: "index.js"
+  using: "composite"
+  steps:
+    - name: Restore - Composite Action Step
+      run: dotnet restore
+      shell: bash
+
+    - name: Build - Composite Action Step
+      run: dotnet build --configura tion ${{ inputs.configuration }}
+      shell: bash
+
+    - name: Test - Composite Action Step
+      run: dotnet test --configuration ${{ inputs.configuration }}  
+      shell: bash
+
